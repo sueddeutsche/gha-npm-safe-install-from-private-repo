@@ -4,7 +4,7 @@ Allows to install packages from a private npm repository while protecting NPM cr
 ## Usage
 
 ### Minimal Config
-```
+```yaml
 name: Install NPM Packages
   uses: sueddeutsche/gha-npm-safe-install-from-private-repo@v1
   with:
@@ -12,7 +12,7 @@ name: Install NPM Packages
 ```
 
 ### Full config
-```
+```yaml
 name: Install NPM Packages
   uses: sueddeutsche/gha-npm-safe-install-from-private-repo@v1
   with:

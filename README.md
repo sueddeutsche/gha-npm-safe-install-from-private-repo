@@ -3,11 +3,23 @@ Allows to install packages from a private npm repository while protecting NPM cr
 
 ## Usage
 
+### Minimal Config
+```
+name: Install NPM Packages
+  uses: sueddeutsche/gha-npm-safe-install-from-private-repo@v1
+  with:
+    NPM_TOKEN: ${{ secrets.NPM_TOKEN }} # NPM token stored in a secret
 ```
 
+### Full config
 ```
-
-# Parameters
+name: Install NPM Packages
+  uses: sueddeutsche/gha-npm-safe-install-from-private-repo@v1
+  with:
+    NPM_TOKEN: ${{ secrets.NPM_TOKEN }} # NPM token stored in a secret
+    registry-url: 'https://registry.npmjs.org' # optioonal defaults to https://registry.npmjs.org
+    node-version: '14' #optional: defaults to '14', for options see https://github.com/actions/setup-node#supported-version-syntax
+```
 
 ## Motivation
 Installing packages the intuitive way may hold the inherent risk of exposing the NPM-Token to malicious packages.

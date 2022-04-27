@@ -1,0 +1,34 @@
+name: safe Install NPM Packages
+description: Install Packages from a private NPM registry without running the risk of malicious packages stealing your NPM-token
+# see https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#publish-to-npmjs-and-gpr-with-npm
+inputs:
+  NPM_TOKEN:
+    description: 'NPM Token for Repo'
+    required: true
+  registry-url:
+    description: Url of npm registry
+    default: 'https://registry.npmjs.org'
+    required: false
+  node-version:
+    description: Version of node to use
+    default: '14'
+    required: false
+
+runs:
+  using: composite
+  steps:
+  - name: Setup node environment with private repo
+    uses: actions/setup-node@v3
+    with:
+      node-version: ${{ inputs.node-version }}
+      registry-url: 'https://registry.npmjs.org'
+  - name: Install NPM Packages
+    shell: bash
+      # Skip post-install scripts here, as a malicious script could steal NPM_TOKEN
+    run: npm install --ignore-scripts
+    env:
+      NODE_AUTH_TOKEN: ${{ inputs.NPM_TOKEN }}
+  - name: Install Scripts
+    shell: bash
+      # `npm rebuild` will run all those post-install scripts for us.
+    run: npm rebuild && npm run prepare --if-present

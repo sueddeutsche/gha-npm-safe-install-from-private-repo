@@ -25,7 +25,7 @@ name: Install NPM Packages
 Installing packages the intuitive way may hold the inherent risk of exposing the NPM-Token to malicious packages.
 Therefore this actions ensures that precautionairy steps are taken to prevent this from happening while providing the normal ease of use for the developer. 
 
-see https://github.com/sueddeutsche/gha-npm-safe-install-from-private-repo
+see https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#use-private-packages
 
 ## Design
 Wrapper around `setup-node`default action.

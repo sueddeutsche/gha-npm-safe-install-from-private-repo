@@ -6,7 +6,7 @@ Allows to install packages from a private npm repository while protecting the NP
 ### Minimal Config
 ```yaml
 name: Install NPM Packages
-  uses: sueddeutsche/gha-npm-safe-install-from-private-repo@v1
+  uses: sueddeutsche/gha-npm-safe-install-from-private-repo@v3
   with:
     NPM_TOKEN: ${{ secrets.NPM_TOKEN }} # NPM token stored in a secret
 ```
@@ -14,11 +14,11 @@ name: Install NPM Packages
 ### Full config
 ```yaml
 name: Install NPM Packages
-  uses: sueddeutsche/gha-npm-safe-install-from-private-repo@v1
+  uses: sueddeutsche/gha-npm-safe-install-from-private-repo@v3
   with:
     NPM_TOKEN: ${{ secrets.NPM_TOKEN }} # NPM token stored in a secret
     registry-url: 'https://registry.npmjs.org' # optioonal defaults to https://registry.npmjs.org
-    node-version: '14' #optional: defaults to '14', for options see https://github.com/actions/setup-node#supported-version-syntax
+    node-version: '18' #optional: defaults to '18', for options see https://github.com/actions/setup-node#supported-version-syntax
 ```
 
 ## Motivation

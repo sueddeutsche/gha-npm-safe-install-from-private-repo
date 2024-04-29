@@ -18,7 +18,7 @@ name: Install NPM Packages
   with:
     NPM_TOKEN: ${{ secrets.NPM_TOKEN }} # NPM token stored in a secret
     registry-url: 'https://registry.npmjs.org' # optioonal defaults to https://registry.npmjs.org
-    node-version: '18' #optional: defaults to '18', for options see https://github.com/actions/setup-node#supported-version-syntax
+    node-version: '20' #optional: defaults to '20', for options see https://github.com/actions/setup-node#supported-version-syntax
 ```
 
 ## Motivation

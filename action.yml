@@ -11,7 +11,7 @@ inputs:
     required: false
   node-version:
     description: Version of node to use
-    default: '18'
+    default: '20'
     required: false
 
 runs:

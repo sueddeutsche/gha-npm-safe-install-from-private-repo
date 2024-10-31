@@ -3,25 +3,23 @@ description: Install Packages from a private NPM registry without running the ri
 # see https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#publish-to-npmjs-and-gpr-with-npm
 inputs:
   NPM_TOKEN:
-    description: 'NPM Token for Repo'
-    required: true
+    description': NPM authentication token for accessing private modules.'
   registry-url:
-    description: Url of npm registry
-    default: 'https://registry.npmjs.org'
-    required: false
+    description: 'Optional registry to set up for auth. Will set the registry in a project level .npmrc and .yarnrc file, and set up auth to read in from env.NODE_AUTH_TOKEN.'
   node-version:
-    description: Version of node to use
-    default: '20'
-    required: false
+    description: 'Version Spec of the version to use. Examples: 12.x, 10.15.1, >=10.15.0.'
+  node-version-file:
+    description: 'File containing the version Spec of the version to use.  Examples: package.json, .nvmrc, .node-version, .tool-versions.'
 
-runs:
+runs:`
   using: composite
   steps:
   - name: Setup node environment with private repo
     uses: actions/setup-node@v4
     with:
-      node-version: ${{ inputs.node-version }}
       registry-url: ${{ inputs.registry-url }}
+      node-version: ${{ inputs.node-version }}
+      node-version-file: ${{ inputs.node-version-file }}
   - name: Install NPM Packages
     shell: bash
       # Skip post-install scripts here, as a malicious script could steal NPM_TOKEN

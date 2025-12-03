@@ -13,6 +13,9 @@ inputs:
     description: Version of node to use
     default: '20'
     required: false
+  npm-version:
+    description: Exact version of npm to use
+    required: false
 
 runs:
   using: composite
@@ -22,6 +25,15 @@ runs:
     with:
       node-version: ${{ inputs.node-version }}
       registry-url: ${{ inputs.registry-url }}
+
+  - name: Ensure NPM version
+    if: ${{ inputs.npm-version }}
+    shell: bash
+    run: |
+      echo "npm-version was set -> Installing NPM version ${{ inputs.npm-version }}..." \
+      && npm i -g npm@${{ inputs.npm-version }} \
+      && echo "NPM version - $(npm -v)"
+
   - name: Install NPM Packages
     shell: bash
       # Skip post-install scripts here, as a malicious script could steal NPM_TOKEN
@@ -29,6 +41,7 @@ runs:
     env:
       NODE_AUTH_TOKEN: ${{ inputs.NPM_TOKEN }}
       NPM_TOKEN: ${{ inputs.NPM_TOKEN }}
+
   - name: Install Scripts
     shell: bash
       # `npm rebuild` will run all those post-install scripts for us.
